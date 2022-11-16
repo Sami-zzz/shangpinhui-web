@@ -29,12 +29,6 @@ VueRouter.prototype.replace = function(location, resolve, reject){
 
 
 
-
-
-
-
-
-
 export default new VueRouter({
     routes:[
         {
@@ -66,7 +60,7 @@ export default new VueRouter({
             path:'/register',
             component: Register,
             meta: {
-                show: FontFaceSetLoadEvent
+                show: false
             }
         },
         {
