@@ -1,15 +1,12 @@
 <template>
   <div>
-    {{$route.query.keyword}}
-    {{$route.params.k}}
-    {{keyword}}
-    {{k}}
+    <TypeNav/>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['keyword', 'k']
+
 }
 </script>
 
