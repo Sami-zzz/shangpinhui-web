@@ -4,7 +4,7 @@
       <div @mouseleave="leaveIndex()">
         <h2 class="all">全部商品分类</h2>
         <div class="sort">
-          <div class="all-sort-list2">
+          <div class="all-sort-list2" @click="goSearch">
             <div
               class="item"
               v-for="(c1, index) in categoryList"
@@ -14,7 +14,7 @@
                 @mouseenter="changeIndex(index)"
                 :class="{ cur: index == currentIndex }"
               >
-                <a href="">{{ c1.categoryName }}</a>
+                <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</a>
               </h3>
               <div class="item-list clearfix" :style="{display: currentIndex === index ? 'block' : 'none'}">
                 <div
@@ -24,11 +24,11 @@
                 >
                   <dl class="fore">
                     <dt>
-                      <a href="">{{ c2.categoryName }}</a>
+                      <a :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{ c2.categoryName }}</a>
                     </dt>
                     <dd>
                       <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                        <a href="">{{ c3.categoryName }}</a>
+                        <a :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{ c3.categoryName }}</a>
                       </em>
                     </dd>
                   </dl>
@@ -72,6 +72,23 @@ export default {
     }, 50),
     leaveIndex(){
       this.currentIndex = -1
+    },
+    goSearch(event){
+      let element = event.target
+      let {categoryname, category1id, category2id, category3id} = element.dataset
+      if(categoryname){
+        let location = {name: 'search'}
+        let query = {categoryname: categoryname}
+        if(category1id){
+          query.category1id = category1id 
+        }else if(category2id){
+          query.category2id = category2id 
+        }else{
+          query.category3id = category3id 
+        }
+        location.query = query
+        this.$router.push(location)
+      }
     }
   },
   computed: {
