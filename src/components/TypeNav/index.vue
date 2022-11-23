@@ -83,7 +83,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("home/categoryList");
+
     if (this.$route.path != "/home") {
       this.show = false;
     }
