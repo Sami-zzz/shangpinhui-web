@@ -83,7 +83,6 @@ export default {
     };
   },
   mounted() {
-
     if (this.$route.path != "/home") {
       this.show = false;
     }
